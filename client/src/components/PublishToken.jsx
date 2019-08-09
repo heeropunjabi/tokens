@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Form, Input, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 const { TextArea } = Input;
@@ -18,7 +18,7 @@ class PublishTokenForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Card className="form-wrapper">
+      <div className="form-wrapper">
         <h1>Publish Tokens</h1>
         <Form onSubmit={this.handleSubmit} className="login-form" layout="horizontal">
 
@@ -59,7 +59,7 @@ class PublishTokenForm extends Component {
           </Form.Item>
         </Form>
         <Link to="/" >Go back</Link>
-      </Card>
+      </div>
     )
   }
 }
