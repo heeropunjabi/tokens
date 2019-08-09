@@ -8,7 +8,7 @@ contract('Room Token initialize', function(accounts) {
       tokenInstance = instance;
       return tokenInstance.name();
     }).then(function(name) {
-      assert.equal(name, 'J.W. MArriot', 'has the correct name');
+      assert.equal(name, 'Hotel Taj', 'has the correct name');
       return tokenInstance.orderBook('101');
     }).then(function(deployedAddress) {
       assert(deployedAddress, accounts[0], 'admin address is inserted correctly.');

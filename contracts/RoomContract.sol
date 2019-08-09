@@ -2,8 +2,8 @@ pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 contract RoomContract {
-    string  public name = "J.W. MArriot";
-    string  public symbol = "JWM";
+    string  public name;
+    string  public symbol;
     mapping(string => address) public orderBook; // HashMap 
     string[] public roomsNumbers; 
     address admin;
@@ -14,8 +14,10 @@ contract RoomContract {
     // mapping(address => mapping(address => string[])) public allowance;
 
 
-  constructor(string[] memory _roomsNumbers) public {
+  constructor(string memory _hotelName, string memory _symbol,string[] memory _roomsNumbers) public {
     admin = msg.sender;
+    name = _hotelName;
+    symbol = _symbol;
     for(uint256 i=0;i< _roomsNumbers.length;i++) {
       // orderBook[_roomsNumbers[i]] = address(0x0);
       orderBook[_roomsNumbers[i]] = admin;
