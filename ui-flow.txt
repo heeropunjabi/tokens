@@ -1,0 +1,26 @@
+Home Page 
+
+Publish Token and Buy Token 
+
+-------------------------------------------------------------------------------------
+
+Publish Token page 
+
+Hotel Name 
+Number of Rooms 
+Room names 
+
+
+Publish Button 
+
+-------------------------------------------------------------------------------------
+Buy Token Page 
+
+Hotel names list 
+Room names list 
+
+Buy token ( will be enabled once we both room no and hotel name is selected)
+
+
+
+-------------------------------------------------------------------------------------
