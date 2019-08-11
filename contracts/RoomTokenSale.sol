@@ -14,6 +14,7 @@ contract RoomTokenSale {
         admin = msg.sender;
         roomContract = _roomContract;
         tokenPrice = _tokenPrice;
+        
     }
 
     function multiply(uint x, uint y) internal pure returns (uint z) {

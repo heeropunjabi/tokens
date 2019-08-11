@@ -20,6 +20,7 @@ contract RoomContract {
     symbol = _symbol;
     for(uint256 i=0;i< _roomsNumbers.length;i++) {
       // orderBook[_roomsNumbers[i]] = address(0x0);
+      //roomsNumbers[i] = _roomsNumbers[i];
       orderBook[_roomsNumbers[i]] = admin;
     }
     balanceOf[admin] = _roomsNumbers.length;
@@ -39,7 +40,7 @@ contract RoomContract {
 
   function transfer(address _to, string memory _roomNo) public returns (bool success) {
 
-    require(orderBook[_roomNo] == admin,'room already allocated ');
+    require(orderBook[_roomNo] == msg.sender,'room already allocated ');
     orderBook[_roomNo] = _to; // ['101'] -> '0xcccbc'
 
     balanceOf[msg.sender] -= 1;
