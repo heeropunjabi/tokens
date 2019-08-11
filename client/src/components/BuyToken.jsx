@@ -22,7 +22,7 @@ class BuyTokenForm extends Component {
       { id: 102, name: '102' },
       { id: 103, name: '103' },
     ],
-    totalTokens:0,
+    totalTokens: '0',
     selectedRoom: ''
   };
 
@@ -49,12 +49,12 @@ class BuyTokenForm extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      instance.events.Sell({}, (e,event)=>{
-        if(!e) {
+      instance.events.Sell({}, (e, event) => {
+        if (!e) {
           this.runExample();
         }
       });
-    
+
       this.setState({ web3, accounts, contract: instance, roomContract }, this.runExample);
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -67,33 +67,33 @@ class BuyTokenForm extends Component {
 
   runExample = async () => {
     const { accounts, contract, roomContract } = this.state;
-    const address =  contract._address;
+    const address = contract._address;
 
-roomContract.methods.balanceOf(address).call().then((balance)=>{
-  this.setState({
-    totalTokens:balance
-  })
+    roomContract.methods.balanceOf(address).call().then((balance) => {
+      this.setState({
+        totalTokens: balance
+      })
 
-})
-};
+    })
+  };
 
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
-         debugger
-              const {contract} = this.state;
-              contract.methods.buyTokens(this.state.selectedRoom).send({
-                from: this.state.accounts[0]
-              }, (error, event)=>{
-              
-                if(!error) {
-                  alert('you have bought 1 token.');return;
-                }
-                alert('this room is already bought.')
-              });
-              debugger
+        debugger
+        const { contract } = this.state;
+        contract.methods.buyTokens(this.state.selectedRoom).send({
+          from: this.state.accounts[0]
+        }, (error, event) => {
+
+          if (!error) {
+            alert('you have bought 1 token.'); return;
+          }
+          alert('this room is already bought.')
+        });
+        debugger
       }
     });
   };
@@ -121,10 +121,10 @@ roomContract.methods.balanceOf(address).call().then((balance)=>{
             {getFieldDecorator('roomName', {
               rules: [{ required: true, message: 'Please select room name!' }],
             })(
-              <Select placeholder="Select Room Name" showSearch size="large" onChange={(selected)=>{
+              <Select placeholder="Select Room Name" showSearch size="large" onChange={(selected) => {
                 debugger
                 this.setState({
-                  selectedRoom: selected+''
+                  selectedRoom: selected + ''
                 })
               }}>
                 {this.state.rooms.map(room => {
@@ -134,17 +134,17 @@ roomContract.methods.balanceOf(address).call().then((balance)=>{
             )}
           </Form.Item>
           <Form.Item >
-            <Button htmlType="submit" type="primary" size="large" >Buy Token</Button>
+            <Button htmlType="submit" type="primary" size="large" disabled={!(parseInt(this.state.totalTokens) > 0)}>Buy Token</Button>
           </Form.Item>
           <Form.Item >
             <label>Total Token Available for Sell :{this.state.totalTokens} </label>
           </Form.Item>
           <Form.Item >
-            <label>Account Address is => {!this.state.accounts? 'loading': this.state.accounts[0]} </label>
+            <label>Account Address is => {!this.state.accounts ? 'loading' : this.state.accounts[0]} </label>
           </Form.Item>
         </Form>
         <Link to="/">Go back</Link>
-      </div>
+      </div >
     )
   }
 }
