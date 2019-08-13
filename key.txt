@@ -1,1 +1,4 @@
 make borrow feel confirm fame crater spider source rose crush express destroy
+
+ht = await HotelToken.deployed()
+hts = await HotelTokenSale.deployed()

@@ -95,10 +95,10 @@ contract HotelToken {
         //require to check time
         require(saleActiveStatus(), "Sale Not Active");
         require(_value <= balanceOf[msg.sender], 'Amount should not exceed in user accounct balance');
-        require(_value <= allowance[msg.sender][admin], 'Amount should not exceed allowance');
+        // require(_value <= allowance[msg.sender][admin], 'Amount should not exceed allowance');
         balanceOf[msg.sender] -= _value;
         balanceOf[admin] += _value;
-        allowance[msg.sender][admin] -= _value;
+        // allowance[msg.sender][admin] -= _value;
         emit Transfer(msg.sender, admin, _value);
         return true;
     }
