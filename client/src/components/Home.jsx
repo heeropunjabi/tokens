@@ -9,6 +9,7 @@ export default class Home extends Component {
         <div className="action__btn">
           <Link to="/publish" className="ant-btn ant-btn-primary ant-btn-lg">Publish Tokens</Link>
           <Link to="/buy" className="ant-btn ant-btn-primary ant-btn-lg">Buy Tokens</Link>
+          <Link to="/token" className="ant-btn ant-btn-primary ant-btn-lg">Tokens</Link>
         </div>
       </Fragment>
     )

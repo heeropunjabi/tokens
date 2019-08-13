@@ -8,26 +8,25 @@
   flex-direction: column;
 }
 
-.action__btn {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.App .ant-btn {
+.App .ant-btn.ant-btn-lg {
   margin: 0 15px;
   line-height: 48px;
   height: 50px;
-  min-width: 150px;;
+  min-width: 150px;
+}
 
+.App .ant-btn {
+  line-height: 38px;
+  height: 40px;
+  min-width: 150px;
+  margin-left: 15px;
 }
 
 .form-wrapper {
   width: 100%;
   max-width: 540px;
   padding: 20px;
-  
+
 }
 
 .ant-form-item-label {
@@ -37,4 +36,22 @@
 
 .ant-form-explain {
   text-align: right;
+}
+
+.ant-btn.btn-success {
+  background-color: #52C41B;
+  color: #fff;
+  border-color: #52C41B;
+}
+
+.ant-btn.btn-info {
+  background-color: #198FFF;
+  color: #fff;
+}
+
+
+.ant-btn.btn-warning {
+  background-color: #FAAD14;
+  color: #fff;
+  border-color: #FAAD14;
 }
