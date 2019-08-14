@@ -6,6 +6,8 @@ import getWeb3 from "../utils/getWeb3";
 
 import HotelToken from '../contracts/HotelToken.json';
 import HotelTokenSale from "../contracts/HotelTokenSale.json";
+import { Button } from 'antd';
+
 
 
 export default class Token extends Component {
@@ -72,17 +74,17 @@ export default class Token extends Component {
 
     HotelToken.methods.balanceOf(accounts[0]).call().then((balance) => {
       HotelToken.methods.balanceOf(address).call().then((total) => {
-      this.setState({
-        totalTokens: total,
-        balance,
+        this.setState({
+          totalTokens: total,
+          balance,
+        })
       })
-    })
     })
   };
   render () {
     return (
       <div className="form-wrapper">
-      <div><b>Total Token Available for Sell : {this.state.totalTokens} </b></div>
+        <div> <Button type="danger"><b>Total Token Available for Sell : {this.state.totalTokens}</b></Button></div>
         <BuyTokenForm />
         <ReturnTokenForm />
         <RedeemTokenForm />
