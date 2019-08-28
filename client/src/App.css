@@ -36,10 +36,20 @@ body {
 .header {
   margin-top: 30px;
   margin-bottom: 50px;
+  font-weight: bold;
 }
 
 .header h1 {
   margin-bottom: 0;
+  font-size: 72px;
+  color: #198fff;
+  line-height: 82px;
+}
+
+.header p {
+  color: #999;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .ant-form-item-label {
