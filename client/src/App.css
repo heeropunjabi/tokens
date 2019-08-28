@@ -1,3 +1,7 @@
+body {
+  background-color: #f8f8f8;
+}
+
 .App {
   text-align: center;
   height: 100%;
@@ -24,7 +28,7 @@
 
 .form-wrapper {
   width: 100%;
-  max-width: 540px;
+  max-width: 1280px;
   padding: 20px;
 
 }
@@ -54,4 +58,12 @@
   background-color: #FAAD14;
   color: #fff;
   border-color: #FAAD14;
+}
+
+.ant-calendar-picker {
+  width: 100%;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
 }

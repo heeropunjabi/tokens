@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Row, Divider, Form, Input, Button, Col } from 'antd';
-
+import { Divider, Form, Input, Button, DatePicker } from 'antd';
+import moment from 'moment';
 
 import getWeb3 from "../utils/getWeb3";
 
@@ -44,6 +44,10 @@ class RedeemTokenFormJsx extends Component {
     }
   };
 
+  disabledDate = (current) => {
+    // Can not select days before today and today
+    return current && current < moment().endOf('day');
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -54,8 +58,8 @@ class RedeemTokenFormJsx extends Component {
         const { HotelToken } = this.state;
 
         HotelToken.methods.redeem(parseInt(values.redeemToken)).send({
-          from :this.state.accounts[0] 
-        },(error, event) => {
+          from: this.state.accounts[0]
+        }, (error, event) => {
 
           if (!error) {
             alert(`you have return ${values.redeemToken} token.`); return;
@@ -69,26 +73,27 @@ class RedeemTokenFormJsx extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Divider><h2>Redeem Token</h2></Divider>
+        <Divider><h2>Redeem Room Token</h2></Divider>
         <Form onSubmit={this.handleSubmit} className="redeem-form">
-          <Row type="flex">
-            <Col span={16}>
-              <Form.Item >
-                {getFieldDecorator('redeemToken', {
-                  rules: [{ required: true, message: 'Please enter value' }],
-                })(
-                  <Input id="redeemToken" type="text" size="large" placeholder="Redeem token" />
-                )}
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item>
-                <Button type="secondary" className="btn-warning" htmlType="submit">
-                  Redeem Token
-                </Button>
-              </Form.Item>
-            </Col>
-          </Row>
+          <Form.Item>
+            {getFieldDecorator('redeemTokenDate', {
+              rules: [{ required: true, message: 'Please select date!' }],
+            })(
+              <DatePicker id="redeemTokenDate" disabledDate={this.disabledDate} size="large" />
+            )}
+          </Form.Item>
+          <Form.Item >
+            {getFieldDecorator('redeemToken', {
+              rules: [{ required: true, message: 'Please enter value' }],
+            })(
+              <Input id="redeemToken" type="text" size="large" placeholder="Redeem token" />
+            )}
+          </Form.Item>
+          <Form.Item>
+            <Button type="secondary" className="btn-warning" htmlType="submit">
+              Redeem Now
+            </Button>
+          </Form.Item>
         </Form>
       </div>
     )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Row, Divider, Form, Input, Button, Col } from 'antd';
+import { Form, Input, Divider, Button, DatePicker } from 'antd';
+import moment from 'moment';
 
 import getWeb3 from "../utils/getWeb3";
 
@@ -7,7 +8,7 @@ import HotelToken from '../contracts/HotelToken.json';
 import HotelTokenSale from "../contracts/HotelTokenSale.json";
 
 class ReturnTokenForm extends Component {
- componentDidMount = async () => {
+  componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
@@ -42,6 +43,11 @@ class ReturnTokenForm extends Component {
     }
   };
 
+  disabledDate = (current) => {
+    // Can not select days before today and today
+    return current && current < moment().endOf('day');
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
@@ -51,8 +57,8 @@ class ReturnTokenForm extends Component {
         const { HotelToken } = this.state;
 
         HotelToken.methods.buyBack(parseInt(values.returnToken)).send({
-          from :this.state.accounts[0] 
-        },(error, event) => {
+          from: this.state.accounts[0]
+        }, (error, event) => {
 
           if (!error) {
             alert(`you have return ${values.returnToken} token.`); return;
@@ -63,30 +69,31 @@ class ReturnTokenForm extends Component {
     });
   };
 
-  render () {
+  render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="form-wrapper">
-        <Divider><h2>Return Token</h2></Divider>
+      <div>
+        <Divider><h2>Transfer Room Ownership</h2></Divider>
         <Form onSubmit={this.handleSubmit} className="return-form">
-          <Row type="flex">
-            <Col span={16}>
-              <Form.Item >
-                {getFieldDecorator('returnToken', {
-                  rules: [{ required: true, message: 'Please enter value' }],
-                })(
-                  <Input id="returnToken" type="text" size="large" placeholder="Return Token" />
-                )}
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item>
-                <Button type="secondary" className="btn-info" htmlType="submit">
-                  Return Token
-                </Button>
-              </Form.Item>
-            </Col>
-          </Row>
+          <Form.Item>
+            {getFieldDecorator('returnTokenDate', {
+              rules: [{ required: true, message: 'Please select date!' }],
+            })(
+              <DatePicker id="returnTokenDate" disabledDate={this.disabledDate} size="large" />
+            )}
+          </Form.Item>
+          <Form.Item >
+            {getFieldDecorator('returnToken', {
+              rules: [{ required: true, message: 'Please enter value' }],
+            })(
+              <Input id="returnToken" type="text" size="large" placeholder="Return Token" />
+            )}
+          </Form.Item>
+          <Form.Item>
+            <Button type="secondary" className="btn-info" htmlType="submit">
+              Transfer
+            </Button>
+          </Form.Item>
         </Form>
       </div >
     )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Row, Divider, Form, Input, Button, Col } from 'antd';
+import { Form, Input, Divider,  Button, DatePicker } from 'antd';
+import moment from 'moment';
 
 import getWeb3 from "../utils/getWeb3";
 
@@ -42,6 +43,12 @@ class BuyTokenFormJsx extends Component {
       console.error(error);
     }
   };
+
+  disabledDate = (current) => {
+    // Can not select days before today and today
+    return current && current < moment().endOf('day');
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
@@ -65,26 +72,28 @@ class BuyTokenFormJsx extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Divider><h2>Buy Token</h2></Divider>
+        <Divider><h2>Buy Room</h2></Divider>
         <Form onSubmit={this.handleSubmit} className="buy-form">
-          <Row type="flex">
-            <Col span={16}>
-              <Form.Item >
-                {getFieldDecorator('buyToken', {
-                  rules: [{ required: true, message: 'Please enter value' }],
-                })(
-                  <Input id="buyToken" type="text" size="large" placeholder="Buy Token" />
-                )}
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item>
-                <Button className="btn-success" htmlType="submit">
-                  Buy Token
-                </Button>
-              </Form.Item>
-            </Col>
-          </Row>
+          <Form.Item>
+            {getFieldDecorator('buyTokenDate', {
+                rules: [{ required: true, message: 'Please select date!' }],
+              })(
+              <DatePicker id="buyTokenDate" disabledDate={this.disabledDate} size="large" />
+            )}
+          </Form.Item>
+          <Form.Item >
+            {getFieldDecorator('buyToken', {
+              rules: [{ required: true, message: 'Please enter value' }],
+            })(
+              <Input id="buyToken" type="text" size="large" placeholder="Buy Token" />
+            )}
+          </Form.Item>
+        
+          <Form.Item>
+            <Button className="btn-success" htmlType="submit">
+              Buy Room
+            </Button>
+          </Form.Item>  
         </Form>
       </div>
     )
