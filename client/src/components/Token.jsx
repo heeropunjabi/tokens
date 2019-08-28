@@ -84,6 +84,11 @@ export default class Token extends Component {
   render() {
     return (
       <div className="form-wrapper">
+        <div className="header">
+          <h1>Kogx</h1>
+          <p>Hotel Sale</p>
+        </div>
+       
         {/* <div className="mb-50"> 
           <Button type="danger"><b>Total Token Available for Sell : {this.state.totalTokens}</b></Button>
         </div> */}
