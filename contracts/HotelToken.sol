@@ -33,7 +33,7 @@ contract HotelToken {
     mapping(address => mapping(uint256 => uint256)) public balanceOfPerDates;
     mapping(address => mapping(address => uint256)) public allowance;
 
-    constructor (uint256 _initialSupply,uint256 _start,uint256 _end) public {
+    constructor (uint256 _initialSupply, uint256 _start, uint256 _end) public {
         balanceOf[msg.sender] = _initialSupply;
 
         
@@ -48,6 +48,8 @@ contract HotelToken {
         
         
     }
+
+    
     function makeSaleLive(bool _status) public  {
         sale = _status;
     }

@@ -17,13 +17,13 @@ contract HotelTokenSale {
         tokenPrice = _tokenPrice;
     }
 
-    function multiply(uint x, uint y) internal pure returns (uint z) {
-        require(y == 0 || (z = x * y) / y == x);
-    }
+    // function multiply(uint x, uint y) internal pure returns (uint z) {
+    //     require(y == 0 || (z = x * y) / y == x);
+    // }
 
     function buyTokens(uint256 _numberOfTokens, uint256 _date) public payable {
-        require(msg.value == multiply(_numberOfTokens, tokenPrice), 'msg.value must equal number of tokens in wei');
-        require(tokenContract.balanceOf(address(this)) >= _numberOfTokens, 'cannot purchase more tokens than available');
+        // require(msg.value == multiply(_numberOfTokens, tokenPrice), 'msg.value must equal number of tokens in wei');
+        require(tokenContract.balanceOfPerDates(address(this), _date) >= _numberOfTokens, 'cannot purchase more tokens than available');
         require(tokenContract.transfer(msg.sender, _numberOfTokens, _date), 'Unable to send tokens');
         // emit Balance(address(this), _numberOfTokens);
 
