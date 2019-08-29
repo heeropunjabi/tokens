@@ -21,10 +21,10 @@ contract HotelTokenSale {
         require(y == 0 || (z = x * y) / y == x);
     }
 
-    function buyTokens(uint256 _numberOfTokens) public payable {
+    function buyTokens(uint256 _numberOfTokens, uint256 _date) public payable {
         require(msg.value == multiply(_numberOfTokens, tokenPrice), 'msg.value must equal number of tokens in wei');
         require(tokenContract.balanceOf(address(this)) >= _numberOfTokens, 'cannot purchase more tokens than available');
-        require(tokenContract.transfer(msg.sender, _numberOfTokens), 'Unable to send tokens');
+        require(tokenContract.transfer(msg.sender, _numberOfTokens, _date), 'Unable to send tokens');
         // emit Balance(address(this), _numberOfTokens);
 
         tokensSold += _numberOfTokens;
@@ -34,7 +34,7 @@ contract HotelTokenSale {
 
     function endSale() public {
         require(msg.sender == admin,"sender is not admin");
-        require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))),"error in end sale");
+        require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this)),1),"error in end sale");
         // require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))));
         // UPDATE: Let's not destroy the contract here
         // Just transfer the balance to the admin

@@ -6,9 +6,12 @@ contract HotelToken {
     uint256 public totalSupply = 40;
     uint256 public start;
     uint256 public end;
+    bool public sale = false;
 
     address admin;
 
+
+    
     event Transfer(
         address indexed _from,
         address indexed _to,
@@ -27,24 +30,36 @@ contract HotelToken {
     );
 
     mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(uint256 => uint256)) public balanceOfPerDates;
     mapping(address => mapping(address => uint256)) public allowance;
 
     constructor (uint256 _initialSupply,uint256 _start,uint256 _end) public {
         balanceOf[msg.sender] = _initialSupply;
-        totalSupply = _initialSupply;
+
+        
+        for(uint256 i=_start;i<_end;i++) {
+            balanceOfPerDates[msg.sender][i] = _initialSupply;
+        }
+        
+        totalSupply = _initialSupply * (_end - _start + 1);
         start = _start;
         end = _end;
         admin = msg.sender;
+        
+        
     }
-
+    function makeSaleLive(bool _status) public  {
+        sale = _status;
+    }
     function saleActiveStatus() public view returns (bool success) {
-        if(start <= block.timestamp){
-            if(block.timestamp >= end){
-                return true;
-            }
-        }else {
-            return false;
-        }
+        return sale;
+        // if(start <= block.timestamp){
+        //     if(block.timestamp >= end){
+        //         return true;
+        //     }
+        // }else {
+        //     return false;
+        // }
     }
 
     function saleEndStatus() public view returns (bool success) {
@@ -56,12 +71,13 @@ contract HotelToken {
         return true;
     }
 
-    function transfer(address _to, uint256 _value) public returns (bool success) {
+    function transfer(address _to, uint256 _value, uint256 _date) public returns (bool success) {
         require(saleActiveStatus(), "Sale Not Active");
-        require(balanceOf[msg.sender] >= _value, "Insufficient sender balance");
 
-        balanceOf[msg.sender] -= _value;
-        balanceOf[_to] += _value;
+        require(balanceOfPerDates[msg.sender][_date] >= _value, "Insufficient sender balance");
+
+        balanceOfPerDates[msg.sender][_date] -= _value;
+        balanceOfPerDates[_to][_date] += _value;
 
         emit Transfer(msg.sender, _to, _value);
 
@@ -103,11 +119,11 @@ contract HotelToken {
         return true;
     }
 
-    function redeem(uint256 _value) public returns (bool success) {
+    function redeem(uint256 _value, uint256 _date) public returns (bool success) {
         //require to check time
         require(saleEndStatus(), "Sale Active");
-        require(_value <= balanceOf[msg.sender], 'Amount should not exceed balance');
-        balanceOf[msg.sender] -= _value;
+        require(_value <= balanceOfPerDates[msg.sender][_date], 'Amount should not exceed balance');
+        balanceOfPerDates[msg.sender][_date] -= _value;
         emit Redeem(msg.sender, _value);
         return true;
     }
