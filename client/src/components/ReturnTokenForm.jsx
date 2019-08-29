@@ -55,13 +55,14 @@ class ReturnTokenForm extends Component {
         console.log(values);
         debugger;
         const { HotelToken } = this.state;
-
-        HotelToken.methods.buyBack(parseInt(values.returnToken)).send({
+        debugger
+        const date = new Date(values.returnTokenDate).getDate();
+        HotelToken.methods.transfer(values.receiverAddress, parseInt(values.returnToken), date).send({
           from: this.state.accounts[0]
         }, (error, event) => {
 
           if (!error) {
-            alert(`you have return ${values.returnToken} token.`); return;
+            alert(`you have transferred ${values.returnToken} token to ${values.receiverAddress}`); return;
           }
           alert(error);
         });
@@ -69,7 +70,7 @@ class ReturnTokenForm extends Component {
     });
   };
 
-  render() {
+  render () {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
@@ -86,7 +87,14 @@ class ReturnTokenForm extends Component {
             {getFieldDecorator('returnToken', {
               rules: [{ required: true, message: 'Please enter value' }],
             })(
-              <Input id="returnToken" type="text" size="large" placeholder="Return Token" />
+              <Input id="returnToken" type="text" size="large" placeholder="Transfer Token" />
+            )}
+          </Form.Item>
+          <Form.Item >
+            {getFieldDecorator('receiverAddress', {
+              rules: [{ required: true, message: 'Please enter value' }],
+            })(
+              <Input id="receiver" type="text" size="large" placeholder="Receiver Address" />
             )}
           </Form.Item>
           <Form.Item>

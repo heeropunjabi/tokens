@@ -15,6 +15,7 @@ contract HotelTokenSale {
         admin = msg.sender;
         tokenContract = _tokenContract;
         tokenPrice = _tokenPrice;
+        _tokenContract.makeSaleLive(true);
     }
 
     // function multiply(uint x, uint y) internal pure returns (uint z) {

@@ -56,20 +56,20 @@ class RedeemTokenFormJsx extends Component {
         console.log(values);
         debugger;
         const { HotelToken } = this.state;
-
-        HotelToken.methods.redeem(parseInt(values.redeemToken)).send({
+        const date = new Date(values.redeemTokenDate).getDate();
+        HotelToken.methods.redeem(parseInt(values.redeemToken), date).send({
           from: this.state.accounts[0]
         }, (error, event) => {
 
           if (!error) {
-            alert(`you have return ${values.redeemToken} token.`); return;
+            alert(`you have Redeemed ${values.redeemToken} tokens.`); return;
           }
           alert(error);
         });
       }
     });
   };
-  render() {
+  render () {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>

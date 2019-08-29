@@ -34,7 +34,7 @@ contract HotelToken {
     mapping(address => mapping(address => uint256)) public allowance;
 
     constructor (uint256 _initialSupply, uint256 _start, uint256 _end) public {
-        balanceOf[msg.sender] = _initialSupply;
+        
 
         
         for(uint256 i=_start;i<_end;i++) {
@@ -42,6 +42,8 @@ contract HotelToken {
         }
         
         totalSupply = _initialSupply * (_end - _start + 1);
+
+        balanceOf[msg.sender] = totalSupply;
         start = _start;
         end = _end;
         admin = msg.sender;
@@ -81,6 +83,8 @@ contract HotelToken {
         balanceOfPerDates[msg.sender][_date] -= _value;
         balanceOfPerDates[_to][_date] += _value;
 
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
 
         return true;
@@ -126,6 +130,8 @@ contract HotelToken {
         require(saleEndStatus(), "Sale Active");
         require(_value <= balanceOfPerDates[msg.sender][_date], 'Amount should not exceed balance');
         balanceOfPerDates[msg.sender][_date] -= _value;
+
+        balanceOf[msg.sender] -= _value;
         emit Redeem(msg.sender, _value);
         return true;
     }

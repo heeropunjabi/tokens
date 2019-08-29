@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input, Divider,  Button, DatePicker } from 'antd';
+import { Form, Input, Divider, Button, DatePicker } from 'antd';
 import moment from 'moment';
 
 import getWeb3 from "../utils/getWeb3";
@@ -54,13 +54,13 @@ class BuyTokenFormJsx extends Component {
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
         const { contract } = this.state;
-        contract.methods.buyTokens(parseInt(values.buyToken)).send({
-          from: this.state.accounts[0],
-          value: parseInt(values.buyToken) * 1000000000000000
+        const date = new Date(values.buyTokenDate).getDate();
+        contract.methods.buyTokens(parseInt(values.buyToken), date).send({
+          from: this.state.accounts[0]
         }, (error, event) => {
 
           if (!error) {
-            alert(`you have bought ${values.buyToken} token.`); return;
+            alert(`you have bought ${values.buyToken} token for Date ${new Date(values.buyTokenDate)}`); return;
           }
           alert(error);
         });
@@ -76,8 +76,8 @@ class BuyTokenFormJsx extends Component {
         <Form onSubmit={this.handleSubmit} className="buy-form">
           <Form.Item>
             {getFieldDecorator('buyTokenDate', {
-                rules: [{ required: true, message: 'Please select date!' }],
-              })(
+              rules: [{ required: true, message: 'Please select date!' }],
+            })(
               <DatePicker id="buyTokenDate" disabledDate={this.disabledDate} size="large" />
             )}
           </Form.Item>
@@ -88,12 +88,12 @@ class BuyTokenFormJsx extends Component {
               <Input id="buyToken" type="text" size="large" placeholder="Buy Token" />
             )}
           </Form.Item>
-        
+
           <Form.Item>
             <Button className="btn-success" htmlType="submit">
               Buy Room
             </Button>
-          </Form.Item>  
+          </Form.Item>
         </Form>
       </div>
     )
