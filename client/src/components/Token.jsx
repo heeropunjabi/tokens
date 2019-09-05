@@ -6,7 +6,7 @@ import getWeb3 from "../utils/getWeb3";
 
 import HotelToken from '../contracts/HotelToken.json';
 import HotelTokenSale from "../contracts/HotelTokenSale.json";
-import { Button, Row, Col, Card } from 'antd';
+import { Row, Col, Card } from 'antd';
 
 
 
@@ -81,14 +81,14 @@ export default class Token extends Component {
       })
     })
   };
-  render() {
+  render () {
     return (
       <div className="form-wrapper">
         <div className="header">
           <h1>Kogx</h1>
           <p>Hotel Sale</p>
         </div>
-       
+
         {/* <div className="mb-50"> 
           <Button type="danger"><b>Total Token Available for Sell : {this.state.totalTokens}</b></Button>
         </div> */}
