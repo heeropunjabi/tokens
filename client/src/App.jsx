@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import SimpleStorageContract from "./contracts/SimpleStorage.json";
 // import Home from './components/Home';
 import Token from './components/Token';
@@ -16,12 +15,7 @@ class App extends Component {
     // }
     return (
       <div className="App">
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Token} />
-
-          </Switch>
-        </BrowserRouter>
+        <Token />
       </div>
     );
   }
