@@ -1,4 +1,7 @@
 const path = require("path");
+var HDWalletProvider = require('truffle-hdwallet-provider');
+
+var mnemonic = 'make borrow feel confirm fame crater spider source rose crush express destroy';
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -11,10 +14,10 @@ module.exports = {
       network_id: "*" // match any network id
     },
     rinkeby: {
-      host: "localhost",
-      port: 8545,
-      network_id: 4,
-      gas: 4700000
+      provider: function () {
+        return new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/36e75574c7474ff4b284455a3d3f4c09');
+      },
+      network_id: 4
     },
     ropsten: {
       provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/36e75574c7474ff4b284455a3d3f4c09`),

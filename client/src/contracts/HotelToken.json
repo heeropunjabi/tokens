@@ -11042,15 +11042,15 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
-    "5777": {
+    "4": {
       "events": {},
       "links": {},
-      "address": "0x9AF2734543483B37dD9b8b6B1eB7560B4A588A1f",
-      "transactionHash": "0xc8b45e2df8541810170247aaebbcbbe1c5c74bbc8c6dc7ba0691a0ef9dfa674a"
+      "address": "0xFdDEEC49Dd622B9E3cA74fd615083fB7a9562bAf",
+      "transactionHash": "0xce1178958128c4bbe1f1e984fd109dc14571703f3ac1f807f9a766995b635184"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-29T20:32:05.319Z",
+  "updatedAt": "2019-09-05T06:44:48.154Z",
   "devdoc": {
     "methods": {}
   },
