@@ -85,8 +85,8 @@ export default class Token extends Component {
     return (
       <div className="form-wrapper">
         <div className="header">
-          <h1>Kogx</h1>
-          <p>Hotel Sale</p>
+          <h1>Token Sale</h1>
+          <p>Hotel Token</p>
         </div>
 
         {/* <div className="mb-50"> 
