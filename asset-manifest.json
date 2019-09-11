@@ -1,15 +1,15 @@
 {
-  "main.css": "/hotel-tokens/static/css/main.f4864c95.chunk.css",
-  "main.js": "/hotel-tokens/static/js/main.bc13a80f.chunk.js",
-  "main.js.map": "/hotel-tokens/static/js/main.bc13a80f.chunk.js.map",
-  "static/css/1.76f3066f.chunk.css": "/hotel-tokens/static/css/1.76f3066f.chunk.css",
-  "static/js/1.da945d1f.chunk.js": "/hotel-tokens/static/js/1.da945d1f.chunk.js",
-  "static/js/1.da945d1f.chunk.js.map": "/hotel-tokens/static/js/1.da945d1f.chunk.js.map",
-  "runtime~main.js": "/hotel-tokens/static/js/runtime~main.085db9fe.js",
-  "runtime~main.js.map": "/hotel-tokens/static/js/runtime~main.085db9fe.js.map",
-  "static/css/1.76f3066f.chunk.css.map": "/hotel-tokens/static/css/1.76f3066f.chunk.css.map",
-  "static/css/main.f4864c95.chunk.css.map": "/hotel-tokens/static/css/main.f4864c95.chunk.css.map",
-  "index.html": "/hotel-tokens/index.html",
-  "precache-manifest.57edb3f49adadb50b4b33db225f6ad87.js": "/hotel-tokens/precache-manifest.57edb3f49adadb50b4b33db225f6ad87.js",
-  "service-worker.js": "/hotel-tokens/service-worker.js"
+  "main.css": "/tokens/static/css/main.f4864c95.chunk.css",
+  "main.js": "/tokens/static/js/main.bc13a80f.chunk.js",
+  "main.js.map": "/tokens/static/js/main.bc13a80f.chunk.js.map",
+  "static/css/1.76f3066f.chunk.css": "/tokens/static/css/1.76f3066f.chunk.css",
+  "static/js/1.33a50fda.chunk.js": "/tokens/static/js/1.33a50fda.chunk.js",
+  "static/js/1.33a50fda.chunk.js.map": "/tokens/static/js/1.33a50fda.chunk.js.map",
+  "runtime~main.js": "/tokens/static/js/runtime~main.55886d38.js",
+  "runtime~main.js.map": "/tokens/static/js/runtime~main.55886d38.js.map",
+  "static/css/main.f4864c95.chunk.css.map": "/tokens/static/css/main.f4864c95.chunk.css.map",
+  "static/css/1.76f3066f.chunk.css.map": "/tokens/static/css/1.76f3066f.chunk.css.map",
+  "index.html": "/tokens/index.html",
+  "precache-manifest.8cce62ab5a5daeb87b7fb49d05e2ace8.js": "/tokens/precache-manifest.8cce62ab5a5daeb87b7fb49d05e2ace8.js",
+  "service-worker.js": "/tokens/service-worker.js"
 }

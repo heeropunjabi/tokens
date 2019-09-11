@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/hotel-tokens/precache-manifest.57edb3f49adadb50b4b33db225f6ad87.js"
+  "/tokens/precache-manifest.8cce62ab5a5daeb87b7fb49d05e2ace8.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/hotel-tokens/index.html", {
+workbox.routing.registerNavigationRoute("/tokens/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
